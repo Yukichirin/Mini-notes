@@ -1,13 +1,13 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { addNote } from '../lib/database';
+import { addNote } from '../../../lib/database';
 
 export default function AddNote() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState('Pending'); // Default status
+  const [status, setStatus] = useState('Pending');
 
   const statusOptions = ['Pending', 'Ongoing', 'Finished'];
 
@@ -19,7 +19,7 @@ export default function AddNote() {
       
       addNote(title, description, status);
       Alert.alert("Success", "Task added successfully!");
-      router.back();
+      router.replace('/tasks');
       
     } catch (error: any) {
       Alert.alert("Error", error.message);

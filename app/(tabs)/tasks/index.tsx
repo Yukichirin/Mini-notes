@@ -1,9 +1,9 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { deleteNote, getNotes, Note } from '../lib/database';
+import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { deleteNote, getNotes, Note } from '../../../lib/database';
 
-export default function Notes() {
+export default function NotesList() {
   const router = useRouter();
   const [notes, setNotes] = useState<Note[]>([]);
 
@@ -23,13 +23,26 @@ export default function Notes() {
   );
 
   const handleDelete = (id: number) => {
-    deleteNote(id);
-    loadNotes(); 
+    Alert.alert(
+      "Delete Task",
+      "Are you sure you want to delete this task?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { 
+          text: "Delete", 
+          style: "destructive", 
+          onPress: () => {
+            deleteNote(id);
+            loadNotes(); 
+          }
+        }
+      ]
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.addButton} onPress={() => router.push('/addNote')}>
+      <Pressable style={styles.addButton} onPress={() => router.push('../tasks/addNote')}>
         <Text style={styles.addButtonText}>Add New Task</Text>
       </Pressable>
       
@@ -51,7 +64,7 @@ export default function Notes() {
                 <Pressable 
                   style={styles.detailButton} 
                   onPress={() => router.push({
-                    pathname: '/noteDetail',
+                    pathname: '../tasks/noteDetail',
                     params: { id: item.id, title: item.title, description: item.description, status: item.status }
                   })}
                 >

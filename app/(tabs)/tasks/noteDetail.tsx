@@ -25,7 +25,7 @@ export default function NoteDetail() {
       <Pressable 
         style={styles.editButton}
         onPress={() => router.push({
-          pathname: '/editNote',
+          pathname: '../tasks/editNote',
           params: { id, title, description, status } 
         })}
       >

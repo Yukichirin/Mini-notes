@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { updateNote } from '../lib/database';
+import { updateNote } from '../../../lib/database';
 
 export default function EditNote() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function EditNote() {
       updateNote(Number(params.id), title, description, status);
       Alert.alert("Success", "Task updated successfully!");
       
-      router.replace('/notes');
+      router.replace('../tasks');
       
     } catch (error: any) {
       Alert.alert("Error", "Something went wrong.");
