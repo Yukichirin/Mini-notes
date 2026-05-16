@@ -2,7 +2,6 @@ import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabaseSync('tasks.db');
 
-// Updated to match the 4 fields from the video
 export type Note = {
   id: number;
   title: string;

@@ -17,7 +17,7 @@ export default function TabLayout() {
         name="tasks" 
         options={{ 
           title: 'Notes',
-          headerShown: false, // Hide tab header so the Stack header shows instead
+          headerShown: false, 
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons name={focused ? 'list' : 'list-outline'} size={size} color={color} />
           )
